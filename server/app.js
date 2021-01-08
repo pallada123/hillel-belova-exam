@@ -16,6 +16,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
+// const userObj = require('./database.js');
+// const userObj = require('./api.js');
+
+
+
+
 // получаем коллекцию из mongo (если её нет, она сразу и создаётся и отдаётся пустая)
 // app.get('/students', (req, res) => {
 // 	db.collection('students').find().toArray((err, docs) => {
