@@ -11,28 +11,26 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'myproject';
 const client = new MongoClient(url);
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use('/cities', usersRouter);
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
-// const userObj = require('./database.js');
-// const userObj = require('./api.js');
 
+app.get('/cities', (req, res) => {
+	db.collection('cities').find().toArray((err, cities) => {
+		if(err) {
+			console.log(err)
+			return res.sendStatus(500);
+		}
+		res.send(cities);
 
-
-
-// получаем коллекцию из mongo (если её нет, она сразу и создаётся и отдаётся пустая)
-// app.get('/students', (req, res) => {
-// 	db.collection('students').find().toArray((err, docs) => {
-// 		if(err) {
-// 			console.log(err)
-// 			return res.sendStatus(500);
-// 		}
-// 		res.send(docs);
-//
-// 	})
-// });
+	})
+});
 
 // получив POST запрос с клиента (из браузера или с Insomnia), добавляем в коллекцию students новую запись
 // app.post('/students', (req, res) => {
@@ -92,5 +90,35 @@ client.connect(function(err) {
 	console.log('mongodb connected successfully to server...');
 
 	db = client.db(dbName);
+
+	citiesCollectionInit();
+
 	app.listen(3000, () => console.log('api started'));
 });
+
+function citiesCollectionInit() {
+	db.collection('cities').find().toArray((err, cities) => {
+		if(err) {
+			throw err;
+		}
+
+		if (cities.length > 0) {
+			return console.log('collection already exists');
+		}
+
+		const fs = require('fs');
+		fs.readFile('data/city.list.json', (err, data) => {
+
+			let arr = JSON.parse(Buffer.from(data).toString());
+			arr.forEach((item) => {
+				db.collection('cities').insertOne(item, (err) => {
+					if(err) {
+						throw err;
+					}
+				});
+			});
+			console.log('Cities list has been added to DB');
+
+		});
+	});
+}
