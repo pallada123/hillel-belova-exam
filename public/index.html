@@ -7,7 +7,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=latin-ext" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="js/script.js"></script>
+	<script src="js/index.js" type="module"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -16,91 +16,91 @@
 
 	<div id="app">
 
-		<div id="weather-location">
-			<div class="loc-w-head">Your City</div>
-			<div class="loc-w-data">
-				<img src="http://openweathermap.org/img/wn/13d.png" alt="" />
-				<span class="loc-w-data-temp">150&deg;C</span>
-			</div>
-			<div class="loc-w-desc">snow, mist</div>
-			<div class="loc-w-city">Kharkiv, UA</div>
+<!--		<div id="weather-location">-->
+<!--			<div class="loc-w-head">Your City</div>-->
+<!--			<div class="loc-w-data">-->
+<!--				<img src="http://openweathermap.org/img/wn/13d.png" alt="" />-->
+<!--				<span class="loc-w-data-temp">150&deg;C</span>-->
+<!--			</div>-->
+<!--			<div class="loc-w-desc">snow, mist</div>-->
+<!--			<div class="loc-w-city">Kharkiv, UA</div>-->
 
-		</div>
+<!--		</div>-->
 
-		<div id="weather-favorite">
+<!--		<div id="weather-favorite">-->
 
-			<div id="city-search">
-				<form action="#">
-					<input type="text" placeholder="Enter the city..." /><button>Add</button>
-				</form>
-			</div>
+<!--			<div id="city-search">-->
+<!--				<form action="#">-->
+<!--					<input type="text" placeholder="Enter the city..." /><button>Add</button>-->
+<!--				</form>-->
+<!--			</div>-->
 
-			<div class="city-w-item">
-				<div class="city-w-head">Dnipro, UA</div>
-				<div class="city-w-container">
-					<img src="http://openweathermap.org/img/wn/13d.png" alt="" />
-					<div class="city-w-temp">150&deg;C</div>
-					<div class="city-w-desc">
-						snow, mist<br />
-						feels like: -2.69&deg;C<br />
-						wind: 1 mps<br />
-						humidity: 100%
-					</div>
-					<div class="city-w-btns">
-						<button>Delete</button>
-						<button>Edit</button>
-					</div>
+<!--			<div class="city-w-item">-->
+<!--				<div class="city-w-head">Dnipro, UA</div>-->
+<!--				<div class="city-w-container">-->
+<!--					<img src="http://openweathermap.org/img/wn/13d.png" alt="" />-->
+<!--					<div class="city-w-temp">150&deg;C</div>-->
+<!--					<div class="city-w-desc">-->
+<!--						snow, mist<br />-->
+<!--						feels like: -2.69&deg;C<br />-->
+<!--						wind: 1 mps<br />-->
+<!--						humidity: 100%-->
+<!--					</div>-->
+<!--					<div class="city-w-btns">-->
+<!--						<button>Delete</button>-->
+<!--						<button>Edit</button>-->
+<!--					</div>-->
 
-				</div>
-			</div>
+<!--				</div>-->
+<!--			</div>-->
 
-			<div class="city-w-item">
-				<div class="city-w-head">Dnipro, UA</div>
-				<div class="city-w-container">
-					<img src="http://openweathermap.org/img/wn/13d.png" alt="" />
-					<div class="city-w-temp">150&deg;C</div>
-					<div class="city-w-desc">
-						snow, mist<br />
-						feels like: -2.69&deg;C<br />
-						wind: 1 mps<br />
-						humidity: 100%
-					</div>
-					<div class="city-w-btns">
-						<button>Delete</button>
-						<button>Edit</button>
-					</div>
+<!--			<div class="city-w-item">-->
+<!--				<div class="city-w-head">Dnipro, UA</div>-->
+<!--				<div class="city-w-container">-->
+<!--					<img src="http://openweathermap.org/img/wn/13d.png" alt="" />-->
+<!--					<div class="city-w-temp">150&deg;C</div>-->
+<!--					<div class="city-w-desc">-->
+<!--						snow, mist<br />-->
+<!--						feels like: -2.69&deg;C<br />-->
+<!--						wind: 1 mps<br />-->
+<!--						humidity: 100%-->
+<!--					</div>-->
+<!--					<div class="city-w-btns">-->
+<!--						<button>Delete</button>-->
+<!--						<button>Edit</button>-->
+<!--					</div>-->
 
-				</div>
-			</div>
+<!--				</div>-->
+<!--			</div>-->
 
-		</div>
+<!--		</div>-->
 
-		<div id="exchange">
-			<div class="exchange-head">₴ Exchange Rate</div>
-			<table>
-				<tr>
-					<th></th>
-					<th>Buy</th>
-					<th>Sell</th>
-				</tr>
-				<tr>
-					<td>$</td>
-					<td>21.50</td>
-					<td>22.30</td>
-				</tr>
-				<tr>
-					<td>€</td>
-					<td>24.11</td>
-					<td>26.23</td>
-				</tr>
-				<tr>
-					<td>₽</td>
-					<td>0.35</td>
-					<td>0.78</td>
-				</tr>
-			</table>
+<!--		<div id="exchange">-->
+<!--			<div class="exchange-head">₴ Exchange Rate</div>-->
+<!--			<table>-->
+<!--				<tr>-->
+<!--					<th></th>-->
+<!--					<th>Buy</th>-->
+<!--					<th>Sell</th>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>$</td>-->
+<!--					<td>21.50</td>-->
+<!--					<td>22.30</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>€</td>-->
+<!--					<td>24.11</td>-->
+<!--					<td>26.23</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>₽</td>-->
+<!--					<td>0.35</td>-->
+<!--					<td>0.78</td>-->
+<!--				</tr>-->
+<!--			</table>-->
 
-		</div>
+<!--		</div>-->
 
 	</div>
 
