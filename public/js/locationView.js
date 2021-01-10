@@ -3,8 +3,17 @@ export default class LocationView {
 
 	}
 
-	locationRender(coord) {
-		console.log(coord);
+	locationRender(weather) {
+		console.log(weather);
 	}
+
+	locationUnavailableRender() {
+		console.log('извините, данные недоступны');
+	}
+
+	locationRefuseRender() {
+		console.log('вы отказались');
+	}
+
 
 }

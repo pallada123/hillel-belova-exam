@@ -4,8 +4,24 @@ export default class LocationController {
 		this.view = view;
 	}
 
-	init() {
-		this.view.locationRender(this.model.getLocation());
+	async init() {
+		let coords;
+
+		try {
+			coords = await this.model.getCoords();
+		} catch (err) {
+			this.view.locationRefuseRender();
+			console.log(err);
+			return;
+		}
+
+
+		this.model.getLocationData(coords)
+		.then(weather => this.view.locationRender(weather))
+		.catch((err) => {
+			this.view.locationUnavailableRender();
+			console.error(err);
+		});
 	}
 
 }

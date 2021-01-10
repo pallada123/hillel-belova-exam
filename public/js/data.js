@@ -17,7 +17,13 @@ export default class Data {
 
 	static getLocationWeather(location) {
 		let data = fetch('https://api.openweathermap.org/data/2.5/weather?' + location + '&units=metric&appid=b3b5be1d5c8dfc8844ca2b0e047e0cee');
-		return data.then(res => res.json());
+		return data.then(async res => {
+			const result = await res.json();
+			if (result.cod !== 200) {
+				throw new Error('Code: ' + result.cod + '. ' + result.message);
+			}
+			return result;
+		});
 	}
 
 	/* get weather */
