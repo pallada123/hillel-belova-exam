@@ -19,8 +19,4 @@ export default class RateController {
 
 		setTimeout(this.init.bind(this), 3600000);
 	}
-
-
-
-
 }

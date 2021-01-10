@@ -3,4 +3,8 @@ export default class LocationView {
 
 	}
 
+	locationRender(coord) {
+		console.log(coord);
+	}
+
 }

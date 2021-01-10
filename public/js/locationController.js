@@ -5,7 +5,7 @@ export default class LocationController {
 	}
 
 	init() {
-
+		this.view.locationRender(this.model.getLocation());
 	}
 
 }

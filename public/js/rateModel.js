@@ -21,7 +21,7 @@ export default class RateModel {
 
 					return item;
 				}))
-	};
+	}
 
 	round(num) {
 		num = Math.round(Number(num) * 100) / 100;
