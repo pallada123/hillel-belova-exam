@@ -5,7 +5,22 @@ export default class RateController {
 	}
 
 	init() {
+		this.model.getRateData()
+			.then(rate => {
+				this.view.rateRender(rate);
+				rate.forEach((item) => {
+					this.view.rateRenderItem(item);
+				});
+			})
+			.catch((err) => {
+				this.view.rateRenderError();
+				console.log(err);
+			});
 
+		setTimeout(this.init.bind(this), 3600000);
 	}
+
+
+
 
 }

@@ -12,6 +12,8 @@ export default class MainController {
 
 	init() {
 
+		this.view.mainRender();
+
 		this.searchController.init();
 		this.locationController.init();
 		this.cityController.init();
