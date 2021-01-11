@@ -5,7 +5,9 @@ export default class SearchController {
 	}
 
 	init() {
-
+		this.view.searchRender();
 	}
+
+	
 
 }
