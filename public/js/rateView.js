@@ -20,7 +20,7 @@ export default class RateView {
 
 		th2.innerText = 'Buy';
 		th3.innerText = 'Sale';
-		head.innerText = '₴ Exchange Rate';
+		head.innerHTML = '&#8372; Exchange Rate';
 		tr.append(th1, th2, th3);
 		this.table.append(tr);
 		mainRate.append(head, this.table);
@@ -32,7 +32,7 @@ export default class RateView {
 		const td2 = document.createElement('td');
 		const td3 = document.createElement('td');
 
-		td1.innerText = rate.ccy;
+		td1.innerHTML = rate.ccy;
 		td2.innerText = rate.buy;
 		td3.innerText = rate.sale;
 

@@ -7,9 +7,9 @@ export default class RateModel {
 
 	getRateData() {
 		const symbol = {
-			'USD': '$',
-			'EUR': '€',
-			'RUR': '₽'
+			'USD': '&#36;',
+			'EUR': '&#8364;',
+			'RUR': '&#8381;'
 		};
 
 		return Data.getRate()
@@ -24,8 +24,7 @@ export default class RateModel {
 	}
 
 	round(num) {
-		num = Math.round(Number(num) * 100) / 100;
-		return String(num);
+		return String(Math.round(Number(num) * 100) / 100);
 	}
 
 	addZero(num) {

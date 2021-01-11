@@ -10,16 +10,18 @@ export default class LocationController {
 		try {
 			coords = await this.model.getCoords();
 		} catch (err) {
-			this.view.locationRefuseRender();
+			let msg = 'refuse';
+			this.view.locationErrorRender(msg);
 			console.log(err);
 			return;
 		}
 
-
 		this.model.getLocationData(coords)
+		.then(weather => this.model.filterWeatherData(weather))
 		.then(weather => this.view.locationRender(weather))
 		.catch((err) => {
-			this.view.locationUnavailableRender();
+			let msg = 'notavailable';
+			this.view.locationErrorRender(msg);
 			console.error(err);
 		});
 	}

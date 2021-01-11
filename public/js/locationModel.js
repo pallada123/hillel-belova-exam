@@ -38,6 +38,23 @@ export default class LocationModel {
 		return `lat=${String(coordinates.lat)}&lon=${String(coordinates.lon)}`;
 	}
 
+	filterWeatherData (weatherObj) {
+		return {
+			name: weatherObj.name,
+			country: weatherObj.sys.country,
+			icon: weatherObj.weather[0].icon,
+			temp: this.round(weatherObj.main.temp),
+			description: weatherObj.weather[0].description,
+			feels_like: this.round(weatherObj.main.feels_like),
+			wind: weatherObj.wind.speed,
+			humidity: weatherObj.main.humidity
+		}
+	}
+
+	round(num) {
+		return String(Math.round(Number(num)));
+	}
+
 
 
 }

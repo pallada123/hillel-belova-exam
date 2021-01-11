@@ -91,6 +91,8 @@ h1 {
 .loc-w-desc {margin-bottom: 20px;}
 .loc-w-city {text-align: right; font-size: 14px;}
 
+#weather-location p {text-align: left;}
+
 /* /weather-location */
 
 /* weather-favorite */
