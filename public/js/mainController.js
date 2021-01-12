@@ -14,10 +14,10 @@ export default class MainController {
 
 		this.view.mainRender();
 
-		this.searchController.init();
 		this.locationController.init();
-		this.cityController.init();
 		this.rateController.init();
+		this.searchController.init();
+		this.cityController.init();
 	}
 
 }

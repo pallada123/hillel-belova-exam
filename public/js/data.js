@@ -26,6 +26,34 @@ export default class Data {
 		});
 	}
 
+	static async getCity(value) {
+		const cities = await fetch('/cities').then(res => res.json());
+		return cities.find(item => item.name === value);	}
+
+	static async getUserCityList() {
+		return await fetch('/mycities').then(res => res.json());
+	}
+
+	static async addCity(cityId) {
+		const city = {
+			cityId: cityId
+		};
+
+		let response = await fetch('/mycities', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+			body: JSON.stringify(city)
+		});
+
+		if (response.ok) {
+			return await response.json();
+		} else {
+			throw new Error(response.status);
+		}
+	}
+
 	/* get weather */
 // getWeather() {
 // 	let data = fetch('https://api.openweathermap.org/data/2.5/weather?q=Харків&units=metric&appid=b3b5be1d5c8dfc8844ca2b0e047e0cee&lang=uk');

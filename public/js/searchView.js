@@ -3,18 +3,14 @@ export default class SearchView {
 
 	}
 
-	getMainEl() {
-		return document.querySelector('#weather-favorite');
-	}
-
 	searchRender() {
-		const mainRate = this.getMainEl();
-		const search = document.createElement('div');
+		this.mainSearch = document.querySelector('#weather-favorite');
+		this.search = document.createElement('div');
 		this.container = document.createElement('div');
 		this.input = document.createElement('input');
 		this.button = document.createElement('button');
 
-		search.setAttribute('id', 'city-search');
+		this.search.setAttribute('id', 'city-search');
 		this.container.classList.add('city-search-container');
 		this.input.setAttribute('type', 'text');
 		this.input.setAttribute('placeholder', 'Enter the city...');
@@ -22,8 +18,32 @@ export default class SearchView {
 		this.button.innerText = 'Add';
 
 		this.container.append(this.input, this.button);
-		search.append(this.container);
-		mainRate.append(search);
+		this.search.append(this.container);
+		this.mainSearch.append(this.search);
+	}
+
+	showCityError(msg) {
+		const p = document.createElement('p');
+		if (msg === 'spelling') {
+			p.innerHTML = 'Sorry, but we don\'t know this city. Please check the&nbsp;spelling.';
+		} else if (msg === 'done') {
+			p.innerHTML = 'This city already exists on&nbsp;your list';
+		}
+
+		this.search.appendChild(p);
+		this.clearInput();
+	}
+
+	clearInput() {
+		this.input.value = '';
+	}
+
+	removeCityError() {
+		const spellingError = document.querySelector('#weather-favorite p');
+
+		if(spellingError) {
+			spellingError.remove();
+		}
 	}
 
 }

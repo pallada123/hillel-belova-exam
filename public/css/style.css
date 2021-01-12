@@ -13,25 +13,23 @@ button, button:hover {
     text-align: center;
     border-radius: 5px;
     background-clip: padding-box;
-    -webkit-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;
     border: none;
     height: 30px;
     line-height: 30px;
     padding: 0px 13px;
-    background-color: #47bfcb;
-    -moz-box-shadow: 0 6px 0 #3999a2;
-    -webkit-box-shadow: 0 6px 0 #3999a2;
-    box-shadow: 0 2px 0 #3999a2;
+    background-color: #85c6cc;
+    -moz-box-shadow: 0 6px 0 #689ea3;
+    -webkit-box-shadow: 0 6px 0 #689ea3;
+    box-shadow: 0 2px 0 #689ea3;
     outline: none;
     font-family: 'Open Sans', sans-serif;
     width: 80px;
 }
 button:hover{
-    -webkit-transform:scale(1.1);
-    -ms-transform:scale(1.1);
-    transform:scale(1.1);
+    background-color: #47bfcb;
+    -moz-box-shadow: 0 6px 0 #3999a2;
+    -webkit-box-shadow: 0 6px 0 #3999a2;
+    box-shadow: 0 2px 0 #3999a2;
 }
 button.display-none,
 button.display-none:hover {display: none;}
@@ -130,6 +128,11 @@ h1 {
     display: inline-block;
     margin-right: 20px;
     min-width: 1px;
+}
+#city-search p {
+    margin: 10px 10px 0 10px;
+    text-align: center;
+    color: #ec6e4c;
 }
     /* /search */
 

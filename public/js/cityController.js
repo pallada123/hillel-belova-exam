@@ -5,7 +5,7 @@ export default class CityController {
 	}
 
 	init() {
-
+		document.body.addEventListener('newCityAdded', evt => this.view.cityRender(evt.detail));
 	}
 
 }

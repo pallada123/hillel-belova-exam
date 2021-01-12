@@ -22,30 +22,32 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.ht
 app.get('/cities', (req, res) => {
 	db.collection('cities').find().toArray((err, cities) => {
 		if(err) {
-			console.log(err)
+			console.log(err);
 			return res.sendStatus(500);
 		}
 		res.send(cities);
-
-	})
+	});
 });
 
-// получив POST запрос с клиента (из браузера или с Insomnia), добавляем в коллекцию students новую запись
-// app.post('/students', (req, res) => {
-// 	let student = {
-// 		id: Date.now(),
-// 		name: req.body.name
-// 	};
-//
-// 	db.collection('students').insertOne(student, (err) => {
-// 		if(err) {
-// 			console.log(err)
-// 			return res.sendStatus(500);
-// 		}
-// 	})
-//
-// 	res.send(student);
-// });
+app.get('/mycities', (req, res) => {
+	db.collection('mycities').find().toArray((err, cities) => {
+		if(err) {
+			console.log(err);
+			return res.sendStatus(500);
+		}
+		res.send(cities);
+	});
+});
+
+app.post('/mycities', (req, res) => {
+	db.collection('mycities').insertOne(req.body, (err, newCity) => {
+		if(err) {
+			console.log(err);
+			return res.sendStatus(500);
+		}
+		res.send(newCity.ops[0]);
+	});
+});
 
 //получив GET запрос с клиента, отдаём запись из базы с ID, указаным в параметре
 // app.get('/students/:id', (req, res) => {
@@ -107,13 +109,19 @@ function citiesCollectionInit() {
 		const fs = require('fs');
 		fs.readFile('data/city.list.json', (err, data) => {
 
-			let arr = JSON.parse(Buffer.from(data).toString());
-			arr.forEach((item) => {
-				db.collection('cities').insertOne(item, (err) => {
-					if(err) {
-						throw err;
-					}
-				});
+			const arr = JSON.parse(Buffer.from(data).toString());
+
+			const clippedArr = arr.map((item) => {
+				return {
+					id: item.id,
+					name: item.name
+				};
+			});
+
+			db.collection('cities').insertMany(clippedArr, (err) => {
+				if(err) {
+					throw err;
+				}
 			});
 			console.log('Cities list has been added to DB');
 
