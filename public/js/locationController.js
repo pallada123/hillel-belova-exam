@@ -17,7 +17,6 @@ export default class LocationController {
 		}
 
 		this.model.getLocationData(coords)
-		.then(weather => this.model.filterWeatherData(weather))
 		.then(weather => this.view.locationRender(weather))
 		.catch((err) => {
 			let msg = 'notavailable';

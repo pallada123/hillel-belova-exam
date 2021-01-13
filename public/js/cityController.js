@@ -5,7 +5,16 @@ export default class CityController {
 	}
 
 	init() {
-		document.body.addEventListener('newCityAdded', evt => this.view.cityRender(evt.detail));
+		document.body.addEventListener('newCityAdded', evt => this.getCityWeather(evt.detail));
+	}
+
+	getCityWeather(city) {
+		this.model.getCityWeather(city.cityId)
+		.then(weather => this.view.cityRender(weather, city._id))
+		.catch((err) => {
+			this.view.cityErrorRender();
+			console.error(err);
+		});
 	}
 
 }

@@ -5,4 +5,12 @@ export default class CityModel {
 
 	}
 
+	getCityWeather(cityId) {
+		return Data.getWeather(this.getApiId(cityId));
+	}
+
+	getApiId(cityId) {
+		return `id=${String(cityId)}`;
+	}
+
 }

@@ -15,15 +15,33 @@ export default class Data {
 		navigator.geolocation.getCurrentPosition(success, error, options);
 	}
 
-	static getLocationWeather(location) {
-		let data = fetch('https://api.openweathermap.org/data/2.5/weather?' + location + '&units=metric&appid=b3b5be1d5c8dfc8844ca2b0e047e0cee');
+	static getWeather(cityData) {
+		let data = fetch('https://api.openweathermap.org/data/2.5/weather?' + cityData + '&units=metric&appid=b3b5be1d5c8dfc8844ca2b0e047e0cee');
 		return data.then(async res => {
 			const result = await res.json();
 			if (result.cod !== 200) {
 				throw new Error('Code: ' + result.cod + '. ' + result.message);
 			}
 			return result;
-		});
+		})
+		.then(async result => await this.filterWeatherData(result));
+	}
+
+	static filterWeatherData(weatherObj) {
+		return {
+			name: weatherObj.name,
+			country: weatherObj.sys.country,
+			icon: weatherObj.weather[0].icon,
+			temp: this.round(weatherObj.main.temp),
+			description: weatherObj.weather[0].description,
+			feels_like: this.round(weatherObj.main.feels_like),
+			wind: weatherObj.wind.speed,
+			humidity: weatherObj.main.humidity
+		}
+	}
+
+	static round(num) {
+		return String(Math.round(Number(num)));
 	}
 
 	static async getCity(value) {
