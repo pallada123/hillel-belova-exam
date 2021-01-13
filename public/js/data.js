@@ -83,39 +83,23 @@ export default class Data {
 		}
 	}
 
-	/* get weather */
-// getWeather() {
-// 	let data = fetch('https://api.openweathermap.org/data/2.5/weather?q=Харків&units=metric&appid=b3b5be1d5c8dfc8844ca2b0e047e0cee&lang=uk');
-// 	data
-// 	.then(res => res.json()
-// 		.then(weather => {
-// 			div.innerHTML = `<pre>${JSON.stringify(weather, null, '  ')}</pre>`;
-// 			// console.log(weather);
-// 		})
-// 	);
-//
-// }
-	/* /get weather */
+	static async editCity(id, cityId) {
+		const city = {
+			cityId: cityId
+		};
 
-//button.addEventListener('click', getWeather);
+		let response = await fetch('/mycities/' + id, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+			body: JSON.stringify(city)
+		});
 
-	/* get cities from DB */
-// getData() {
-//
-// 	let data = fetch('/cities');
-// 	data
-// 	.then(res => res.json()
-// 		.then(cities => {
-// 			div.innerText = cities;
-// 		})
-// 	);
-//
-// }
-//
-// button.addEventListener('click', getData);
-	/* /test */
-
-
-
-
+		if (response.ok) {
+			return await response.json();
+		} else {
+			throw new Error(response.status);
+		}
+	}
 }

@@ -59,12 +59,80 @@ export default class CityView {
 		search.after(item);
 	}
 
-	editCity(item) {
-		console.log('edit', item);
+
+	getIndex(item) {
+		//return item.closest('li').getAttribute('data-index');
+	}
+
+	getValue() {
+		//return document.querySelector('.editedText input').value;
 	}
 
 	deleteCity(item) {
 		item.remove();
+	}
+
+	disableBtn() {
+		const btnEdit = document.querySelectorAll('.btnEdit');
+		const btnDelete = document.querySelectorAll('.btnDelete');
+		btnEdit.forEach((item) => {
+			item.setAttribute('disabled', 'disabled');
+		});
+		btnDelete.forEach((item) => {
+			item.setAttribute('disabled', 'disabled');
+		});
+	}
+
+	enableBtn() {
+		const btnEdit = document.querySelectorAll('.btnEdit');
+		const btnDelete = document.querySelectorAll('.btnDelete');
+		btnEdit.forEach((item) => {
+			item.removeAttribute('disabled');
+		});
+		btnDelete.forEach((item) => {
+			item.removeAttribute('disabled');
+		});
+	}
+
+	startEditCity(id) {
+		this.item = document.querySelector('div[data-id=\"' + id + '\"]');
+		this.btnSave = document.createElement('button');
+		this.btnEsc = document.createElement('button');
+		this.input = document.createElement('input');
+		this.head = this.item.firstChild;
+		this.oldText = this.head.innerText;
+		this.btnSave.innerHTML = 'Save';
+		this.btnEsc.innerHTML = 'Cancel';
+		this.btnSave.classList.add('btnSave');
+		this.btnEsc.classList.add('btnEsc');
+		this.input.setAttribute('type', 'text');
+
+		this.btns = document.querySelector('div[data-id=\"' + id + '\"] .city-w-btns');
+		this.btnDelete = document.querySelector('div[data-id=\"' + id + '\"] .btnDelete');
+
+		this.btns.insertBefore(this.btnEsc, this.btnDelete);
+		this.btns.insertBefore(this.btnSave, this.btnEsc);
+		this.head.innerText = '';
+		this.head.append(this.input);
+
+		this.city = this.oldText.split(', ');
+		this.input.value = this.city[0];
+	}
+
+	clearEdit() {
+		this.btnSave.remove();
+		this.btnEsc.remove();
+		this.input.remove();
+	}
+
+	cancelEditCity() {
+		this.clearEdit();
+		this.head.innerText = this.oldText;
+	}
+
+	finishEditCity() {
+		// const value = this.getValue();
+		// this.clearEdit().innerText = value;
 	}
 
 }

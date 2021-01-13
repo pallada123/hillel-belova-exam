@@ -46,4 +46,18 @@ export default class SearchView {
 		}
 	}
 
+	disableSearch() {
+		const input = document.querySelector('#city-search input');
+		const button = document.querySelector('#city-search button');
+		input.setAttribute('disabled', 'disabled');
+		button.setAttribute('disabled', 'disabled');
+	}
+
+	enableSearch() {
+		const input = document.querySelector('#city-search input');
+		const button = document.querySelector('#city-search button');
+		input.removeAttribute('disabled');
+		button.removeAttribute('disabled');
+	}
+
 }

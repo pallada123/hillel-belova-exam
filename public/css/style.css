@@ -31,8 +31,31 @@ button:hover{
     -webkit-box-shadow: 0 6px 0 #3999a2;
     box-shadow: 0 2px 0 #3999a2;
 }
-button.display-none,
-button.display-none:hover {display: none;}
+button[disabled="disabled"],
+button[disabled="disabled"]:hover {
+    background-color: #85c6cc;
+    -moz-box-shadow: 0 6px 0 #689ea3;
+    -webkit-box-shadow: 0 6px 0 #689ea3;
+    box-shadow: 0 2px 0 #689ea3;
+    cursor: default;
+    opacity: .5;
+}
+
+input[type="text"] {
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    background-clip: padding-box;
+    background-color: #f5f5f5;
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 0px 15px;
+    display: inline-block;
+    margin-right: 20px;
+    min-width: 1px;
+}
 
 #wrapper {
     height: auto;
@@ -115,19 +138,6 @@ h1 {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    height: 32px;
-    line-height: 32px;
-    border: 1px solid #eaeaea;
-    border-radius: 5px;
-    background-clip: padding-box;
-    background-color: #f5f5f5;
-    color: #000;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    padding: 0px 15px;
-    display: inline-block;
-    margin-right: 20px;
-    min-width: 1px;
 }
 #city-search p {
     margin: 10px 10px 0 10px;
@@ -155,6 +165,8 @@ h1 {
 .city-w-desc {padding: 10px 10px 0 10px;}
 .city-w-btns {padding: 10px 10px 0 10px; width: 100px;}
 .city-w-btns button, .city-w-btns button:hover {margin: 0 0 10px 0;}
+
+#weather-favorite input[type="text"] {width: 100%;}
     /* /city item */
 
 

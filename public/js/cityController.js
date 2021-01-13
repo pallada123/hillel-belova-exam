@@ -49,8 +49,25 @@ export default class CityController {
 		}
 	}
 
-	editCity(item) {
-		this.view.editCity(item);
+	startEditCity(id) {
+		this.view.startEditCity(id);
+		this.view.disableBtn();
+		this.addSaveHandle();
+		this.addCancelHandle();
+		this.addBodyEventDisableSearch();
+	}
+
+	cancelEditCity() {
+		this.view.cancelEditCity();
+		this.view.enableBtn();
+		this.addBodyEventEnableSearch();
+	}
+
+	finishEditCity(event) {
+		this.model.updateCity(this.view.getValue(), this.view.getIndex(event.target));
+		this.view.finishEditCity();
+		this.view.enableBtn();
+		this.addBodyEventEnableSearch();
 	}
 
 	addEditDeleteHandles(id) {
@@ -58,10 +75,30 @@ export default class CityController {
 
 		item.addEventListener('click', (event) => {
 			if (event.target.className === 'btnEdit') {
-				this.editCity(item);
+				this.startEditCity(id);
 			} else if (event.target.className === 'btnDelete') {
 				this.deleteCity(item);
 			}
 		});
+	}
+
+	addSaveHandle() {
+		const btnSave = document.querySelector('.btnSave');
+		btnSave.addEventListener('click', this.finishEditCity.bind(this));
+	}
+
+	addCancelHandle() {
+		const btnEsc = document.querySelector('.btnEsc');
+		btnEsc.addEventListener('click', this.cancelEditCity.bind(this));
+	}
+
+	addBodyEventDisableSearch() {
+		const startEdit = new CustomEvent('startEdit');
+		document.body.dispatchEvent(startEdit);
+	}
+
+	addBodyEventEnableSearch() {
+		const finishEdit = new CustomEvent('finishEdit');
+		document.body.dispatchEvent(finishEdit);
 	}
 }

@@ -59,38 +59,15 @@ app.delete('/mycities/:id', (req, res) => {
 	})
 });
 
-//получив GET запрос с клиента, отдаём запись из базы с ID, указаным в параметре
-// app.get('/mycities/:id', (req, res) => {
-// 	db.collection('mycities').findOne({_id: ObjectID(req.params.id)}, (err, docs) => {
-// 		if(err) {
-// 			console.log(err)
-// 			return res.sendStatus(500);
-// 		}
-// 		res.send(docs);
-// 	})
-// });
-
-//получив PUT запрос с клиента с новым значением ключа name в body запроса, меняем в базе значение ключа name у элемента по ID в параметре
-// app.put('/mycities/:id', (req, res) => {
-// 	db.collection('mycities').updateOne({_id: ObjectID(req.params.id)}, {$set: {name: req.body.name}}, (err) => {
-// 		if(err) {
-// 			console.log(err)
-// 			return res.sendStatus(500);
-// 		}
-// 		res.sendStatus(200);
-// 	})
-// });
-
-//получив DELETE запрос с клиента, удаляем из базы элемент по ID в параметре
-// app.delete('/mycities/:id', (req, res) => {
-// 	db.collection('mycities').deleteOne({_id: ObjectID(req.params.id)}, (err) => {
-// 		if(err) {
-// 			console.log(err)
-// 			return res.sendStatus(500);
-// 		}
-// 		res.sendStatus(200);
-// 	})
-// });
+app.put('/mycities/:id', (req, res) => {
+	db.collection('mycities').updateOne({_id: ObjectID(req.params.id)}, {$set: {cityId: req.body.cityId}}, (err) => {
+		if(err) {
+			console.log(err)
+			return res.sendStatus(500);
+		}
+		res.sendStatus(200);
+	})
+});
 
 client.connect(function(err) {
 	if(err) {

@@ -21,4 +21,8 @@ export default class CityModel {
 		return await Data.deleteCity(id);
 	}
 
+	updateCity() {
+
+	}
+
 }

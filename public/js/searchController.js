@@ -8,6 +8,8 @@ export default class SearchController {
 		this.view.searchRender();
 		this.addSearchBtnHandle();
 		this.addSearchInputHandle();
+		document.body.addEventListener('startEdit', this.view.disableSearch.bind(this));
+		document.body.addEventListener('finishEdit', this.view.enableSearch.bind(this));
 	}
 
 	async validateCity() {
