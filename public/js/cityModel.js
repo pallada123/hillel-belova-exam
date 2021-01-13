@@ -13,4 +13,8 @@ export default class CityModel {
 		return `id=${String(cityId)}`;
 	}
 
+	async getUserCityList() {
+		return await Data.getUserCityList();
+	}
+
 }

@@ -6,6 +6,7 @@ export default class CityController {
 
 	init() {
 		document.body.addEventListener('newCityAdded', evt => this.getCityWeather(evt.detail));
+		this.getUserCityList();
 	}
 
 	getCityWeather(city) {
@@ -15,6 +16,23 @@ export default class CityController {
 			this.view.cityErrorRender();
 			console.error(err);
 		});
+	}
+
+	async getUserCityList() {
+		try {
+			let userCities = await this.model.getUserCityList();
+
+			if (!userCities.length) {
+				return;
+			}
+
+			userCities.forEach((item) => {
+				this.getCityWeather(item);
+			});
+
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 }

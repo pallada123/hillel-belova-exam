@@ -39,7 +39,7 @@ export default class SearchView {
 	}
 
 	removeCityError() {
-		const spellingError = document.querySelector('#weather-favorite p');
+		const spellingError = document.querySelector('#city-search p');
 
 		if(spellingError) {
 			spellingError.remove();

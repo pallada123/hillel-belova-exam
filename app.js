@@ -50,8 +50,8 @@ app.post('/mycities', (req, res) => {
 });
 
 //получив GET запрос с клиента, отдаём запись из базы с ID, указаным в параметре
-// app.get('/students/:id', (req, res) => {
-// 	db.collection('students').findOne({_id: ObjectID(req.params.id)}, (err, docs) => {
+// app.get('/mycities/:id', (req, res) => {
+// 	db.collection('mycities').findOne({_id: ObjectID(req.params.id)}, (err, docs) => {
 // 		if(err) {
 // 			console.log(err)
 // 			return res.sendStatus(500);
@@ -61,8 +61,8 @@ app.post('/mycities', (req, res) => {
 // });
 
 //получив PUT запрос с клиента с новым значением ключа name в body запроса, меняем в базе значение ключа name у элемента по ID в параметре
-// app.put('/students/:id', (req, res) => {
-// 	db.collection('students').updateOne({_id: ObjectID(req.params.id)}, {$set: {name: req.body.name}}, (err) => {
+// app.put('/mycities/:id', (req, res) => {
+// 	db.collection('mycities').updateOne({_id: ObjectID(req.params.id)}, {$set: {name: req.body.name}}, (err) => {
 // 		if(err) {
 // 			console.log(err)
 // 			return res.sendStatus(500);
@@ -72,8 +72,8 @@ app.post('/mycities', (req, res) => {
 // });
 
 //получив DELETE запрос с клиента, удаляем из базы элемент по ID в параметре
-// app.delete('/students/:id', (req, res) => {
-// 	db.collection('students').deleteOne({_id: ObjectID(req.params.id)}, (err) => {
+// app.delete('/mycities/:id', (req, res) => {
+// 	db.collection('mycities').deleteOne({_id: ObjectID(req.params.id)}, (err) => {
 // 		if(err) {
 // 			console.log(err)
 // 			return res.sendStatus(500);

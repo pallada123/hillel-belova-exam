@@ -3,8 +3,12 @@ export default class LocationView {
 
 	}
 
+	getMainEl() {
+		return document.querySelector('#weather-location');
+	}
+
 	locationRender(weather) {
-		this.mainLocation = document.querySelector('#weather-location');
+		const mainLocation = this.getMainEl();
 		const head = document.createElement('div');
 		const data = document.createElement('div');
 		const img = document.createElement('img');
@@ -27,14 +31,15 @@ export default class LocationView {
 		city.innerText = weather.name + ', ' + weather.country;
 
 		data.append(img, span);
-		this.mainLocation.append(head, data, desc, city);
+		mainLocation.append(head, data, desc, city);
 	}
 
 	locationErrorRender(msg) {
+		const mainLocation = this.getMainEl();
 		if (msg === 'refuse') {
-			this.mainLocation.innerHTML = '<p>You\'ve refused to&nbsp;receive the&nbsp;weather in&nbsp;your city</p>';
+			mainLocation.innerHTML = '<p>You\'ve refused to&nbsp;receive the&nbsp;weather in&nbsp;your city</p>';
 		} else {
-			this.mainLocation.innerHTML = '<p>Unfortunately, the&nbsp;weather in&nbsp;your city isn\'t&nbsp;available now.</p>';
+			mainLocation.innerHTML = '<p>Unfortunately, the&nbsp;weather in&nbsp;your city isn\'t&nbsp;available now.</p>';
 		}
 	}
 

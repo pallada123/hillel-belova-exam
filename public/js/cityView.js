@@ -3,8 +3,12 @@ export default class CityView {
 
 	}
 
+	getPrevEl() {
+		return document.querySelector('#city-search');
+	}
+
 	cityRender(weather, id) {
-		this.search = document.querySelector('#city-search');
+		const search = this.getPrevEl();
 
 		const item = document.createElement('div');
 		const head = document.createElement('div');
@@ -42,11 +46,15 @@ export default class CityView {
 		container.append(img, temp, desc, btns);
 		item.append(head, container);
 
-		this.search.after(item);
+		search.after(item);
 	}
 
 	cityErrorRender() {
-		console.log('погода не доступна');
+		const search = this.getPrevEl();
+		const item = document.createElement('div');
+		item.classList.add('city-w-item');
+		item.innerHTML = '<p>The&nbsp;city has&nbsp;been added to&nbsp;your list.<br />Unfortunately, the&nbsp;weather in&nbsp;this&nbsp;city isn\'t&nbsp;available now.</p>';
+		search.after(item);
 	}
 
 }
