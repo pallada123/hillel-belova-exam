@@ -11,7 +11,10 @@ export default class CityController {
 
 	getCityWeather(city) {
 		this.model.getCityWeather(city.cityId)
-		.then(weather => this.view.cityRender(weather, city._id))
+		.then(weather => {
+			this.view.cityRender(weather, city._id);
+			this.addEditDeleteHandles(city._id);
+		})
 		.catch((err) => {
 			this.view.cityErrorRender();
 			console.error(err);
@@ -35,4 +38,30 @@ export default class CityController {
 		}
 	}
 
+	async deleteCity(item) {
+		this.view.deleteCity(item);
+		try {
+			const attr = item.getAttribute('data-id');
+			await this.model.deleteCity(attr);
+
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	editCity(item) {
+		this.view.editCity(item);
+	}
+
+	addEditDeleteHandles(id) {
+		const item = document.querySelector('div[data-id=\"' + id + '\"]');
+
+		item.addEventListener('click', (event) => {
+			if (event.target.className === 'btnEdit') {
+				this.editCity(item);
+			} else if (event.target.className === 'btnDelete') {
+				this.deleteCity(item);
+			}
+		});
+	}
 }

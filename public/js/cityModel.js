@@ -17,4 +17,8 @@ export default class CityModel {
 		return await Data.getUserCityList();
 	}
 
+	async deleteCity(id) {
+		return await Data.deleteCity(id);
+	}
+
 }

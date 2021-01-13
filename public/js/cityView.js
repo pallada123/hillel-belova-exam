@@ -17,8 +17,8 @@ export default class CityView {
 		const temp = document.createElement('div');
 		const desc = document.createElement('div');
 		const btns = document.createElement('div');
-		this.delete = document.createElement('button');
-		this.edit = document.createElement('button');
+		const btnDelete = document.createElement('button');
+		const btnEdit = document.createElement('button');
 
 		item.setAttribute('data-id', id);
 		img.setAttribute('alt', '');
@@ -30,6 +30,8 @@ export default class CityView {
 		temp.classList.add('city-w-temp');
 		desc.classList.add('city-w-desc');
 		btns.classList.add('city-w-btns');
+		btnDelete.classList.add('btnDelete');
+		btnEdit.classList.add('btnEdit');
 
 		head.innerText = weather.name + ', ' + weather.country;
 		temp.innerHTML = weather.temp + '&deg;C';
@@ -39,10 +41,10 @@ export default class CityView {
 			wind: ${weather.wind} mps<br />
 			humidity: ${weather.humidity}%
 		`;
-		this.delete.innerText = 'Delete';
-		this.edit.innerText = 'Edit';
+		btnDelete.innerText = 'Delete';
+		btnEdit.innerText = 'Edit';
 
-		btns.append(this.delete, this.edit);
+		btns.append(btnDelete, btnEdit);
 		container.append(img, temp, desc, btns);
 		item.append(head, container);
 
@@ -55,6 +57,14 @@ export default class CityView {
 		item.classList.add('city-w-item');
 		item.innerHTML = '<p>The&nbsp;city has&nbsp;been added to&nbsp;your list.<br />Unfortunately, the&nbsp;weather in&nbsp;this&nbsp;city isn\'t&nbsp;available now.</p>';
 		search.after(item);
+	}
+
+	editCity(item) {
+		console.log('edit', item);
+	}
+
+	deleteCity(item) {
+		item.remove();
 	}
 
 }

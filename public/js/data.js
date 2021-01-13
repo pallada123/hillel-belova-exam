@@ -72,6 +72,17 @@ export default class Data {
 		}
 	}
 
+	static async deleteCity(id) {
+
+		let response = await fetch('/mycities/' + id, {
+			method: 'DELETE'
+		});
+
+		if (!response.ok) {
+			throw new Error(response.status);
+		}
+	}
+
 	/* get weather */
 // getWeather() {
 // 	let data = fetch('https://api.openweathermap.org/data/2.5/weather?q=Харків&units=metric&appid=b3b5be1d5c8dfc8844ca2b0e047e0cee&lang=uk');

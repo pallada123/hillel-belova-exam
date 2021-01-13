@@ -49,6 +49,16 @@ app.post('/mycities', (req, res) => {
 	});
 });
 
+app.delete('/mycities/:id', (req, res) => {
+	db.collection('mycities').deleteOne({_id: ObjectID(req.params.id)}, (err) => {
+		if(err) {
+			console.log(err)
+			return res.sendStatus(500);
+		}
+		res.sendStatus(200);
+	})
+});
+
 //получив GET запрос с клиента, отдаём запись из базы с ID, указаным в параметре
 // app.get('/mycities/:id', (req, res) => {
 // 	db.collection('mycities').findOne({_id: ObjectID(req.params.id)}, (err, docs) => {
