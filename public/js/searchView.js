@@ -1,27 +1,24 @@
-import {msgErrorSpelling, msgErrorCityExists, iconUrl, iconExt} from './data.js';
+import {msgErrorSpelling, msgErrorCityExists} from './data.js';
 
 export default class SearchView {
-	constructor() {
-
-	}
 
 	searchRender() {
-		this.mainSearch = document.querySelector('#weather-favorite');
+		const mainSearch = document.querySelector('#weather-favorite');
 		this.search = document.createElement('div');
-		this.container = document.createElement('div');
+		const container = document.createElement('div');
 		this.input = document.createElement('input');
 		this.button = document.createElement('button');
 
 		this.search.setAttribute('id', 'city-search');
-		this.container.classList.add('city-search-container');
+		container.classList.add('city-search-container');
 		this.input.setAttribute('type', 'text');
 		this.input.setAttribute('placeholder', 'Enter the city...');
 
 		this.button.innerText = 'Add';
 
-		this.container.append(this.input, this.button);
-		this.search.append(this.container);
-		this.mainSearch.append(this.search);
+		container.append(this.input, this.button);
+		this.search.append(container);
+		mainSearch.prepend(this.search);
 	}
 
 	showCityError(msg) {

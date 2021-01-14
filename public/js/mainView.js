@@ -1,17 +1,18 @@
 export default class MainView {
-	constructor() {
-		this.mainBlock = document.querySelector('#app');
-
-		this.location = document.createElement('div');
-		this.city = document.createElement('div');
-		this.rate = document.createElement('div');
-		this.location.setAttribute('id', 'weather-location');
-		this.city.setAttribute('id', 'weather-favorite');
-		this.rate.setAttribute('id', 'exchange');
-	}
 
 	mainRender() {
-		this.mainBlock.append(this.location, this.city, this.rate);
+		const mainBlock = document.querySelector('#app');
+		const location = document.createElement('div');
+		const weather = document.createElement('div');
+		const cities = document.createElement('div');
+		const rate = document.createElement('div');
+		location.setAttribute('id', 'weather-location');
+		weather.setAttribute('id', 'weather-favorite');
+		cities.setAttribute('id', 'cities');
+		rate.setAttribute('id', 'exchange');
+
+		weather.append(cities);
+		mainBlock.append(location, weather, rate);
 	}
 
 }

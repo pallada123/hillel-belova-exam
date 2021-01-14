@@ -1,16 +1,13 @@
 import {msgErrorCityListWeatherNotAvailable, msgErrorSpelling, msgErrorCityExists, iconUrl, iconExt, tempSymbol, windSymbol} from './data.js';
 
 export default class CityView {
-	constructor() {
-
-	}
 
 	getPrevEl() {
-		return document.querySelector('#city-search');
+		return document.querySelector('#cities');
 	}
 
 	cityRender(weather, id) {
-		const search = this.getPrevEl();
+		const main = this.getPrevEl();
 
 		const item = document.createElement('div');
 		const head = document.createElement('div');
@@ -50,15 +47,15 @@ export default class CityView {
 		container.append(img, temp, desc, btns);
 		item.append(head, container);
 
-		search.after(item);
+		main.prepend(item);
 	}
 
 	cityErrorRender() {
-		const search = this.getPrevEl();
+		const main = this.getPrevEl();
 		const item = document.createElement('div');
 		item.classList.add('city-w-item');
 		item.innerHTML = `<p>${msgErrorCityListWeatherNotAvailable}</p>`;
-		search.after(item);
+		main.prepend(item);
 	}
 
 

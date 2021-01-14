@@ -1,10 +1,10 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let MongoClient = require('mongodb').MongoClient;
-let ObjectID = require('mongodb').ObjectID;
+const express = require('express');
+const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 const path = require('path');
 
-let app = express();
+const app = express();
 let db;
 
 const url = 'mongodb://localhost:27017';
@@ -56,7 +56,7 @@ app.delete('/mycities/:id', (req, res) => {
 			return res.sendStatus(500);
 		}
 		res.sendStatus(200);
-	})
+	});
 });
 
 app.put('/mycities/:id', (req, res) => {
@@ -66,7 +66,7 @@ app.put('/mycities/:id', (req, res) => {
 			return res.sendStatus(500);
 		}
 		res.sendStatus(200);
-	})
+	});
 });
 
 client.connect(function(err) {

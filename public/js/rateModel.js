@@ -1,9 +1,6 @@
 import Data from './data.js'
 
 export default class RateModel {
-	constructor() {
-
-	}
 
 	getRateData() {
 		const symbol = {
@@ -16,19 +13,15 @@ export default class RateModel {
 			.then(data => data.filter(item => item.ccy !== 'BTC'))
 			.then(data => data.map(item => {
 					item.ccy = symbol[item.ccy];
-					item.buy = this.addZero(this.round(item.buy));
-					item.sale = this.addZero(this.round(item.sale));
+					item.buy = this.fixNumFormat(item.buy);
+					item.sale = this.fixNumFormat(item.sale);
 
 					return item;
 				}))
 	}
 
-	round(num) {
-		return String(Math.round(Number(num) * 100) / 100);
-	}
-
-	addZero(num) {
-		const numArr = num.split('.');
+	fixNumFormat(num) {
+		const numArr = String(Math.round(Number(num) * 100) / 100).split('.');
 
 		if (numArr[1].length === 2) {
 			return numArr.join('.');

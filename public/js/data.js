@@ -57,7 +57,7 @@ export default class Data {
 
 	static async getCity(value) {
 		const cities = await fetch('/cities').then(res => res.json());
-		return cities.find(item => item.name === value);
+		return cities.find(item => item.name.toLowerCase() === value.toLowerCase());
 	}
 
 	static async getUserCityList() {

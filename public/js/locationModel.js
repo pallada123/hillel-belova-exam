@@ -1,9 +1,6 @@
 import Data from './data.js';
 
 export default class LocationModel {
-	constructor() {
-
-	}
 
 	getLocationData(coords) {
 		return Data.getWeather(this.getApiLocation(coords));

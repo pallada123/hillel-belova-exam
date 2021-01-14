@@ -1,9 +1,6 @@
 import Data from './data.js';
 
 export default class SearchModel {
-	constructor() {
-
-	}
 
 	async getCity(value) {
 		return await Data.getCity(value);

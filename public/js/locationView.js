@@ -1,9 +1,6 @@
 import {msgErrorRefuse, msgErrorWeatherNotAvailable, iconUrl, iconExt, tempSymbol} from './data.js';
 
 export default class LocationView {
-	constructor() {
-
-	}
 
 	getMainEl() {
 		return document.querySelector('#weather-location');

@@ -24,22 +24,23 @@ export default class SearchController {
 
 				if (city === undefined) {
 					this.view.showCityError('spelling');
-
-				} else {
-					this.view.clearInput();
-
-					let userCities = await this.model.getUserCityList();
-
-					if (userCities.find(item => item.cityId === city.id)) {
-						this.view.showCityError('done');
-					} else {
-						const addedCity = await this.model.addCity(city.id);
-
-						const newCityAdded = new CustomEvent('newCityAdded', {detail: addedCity});
-						document.body.dispatchEvent(newCityAdded);
-					}
-
+					return;
 				}
+
+				this.view.clearInput();
+
+				let userCities = await this.model.getUserCityList();
+
+				if (userCities.find(item => item.cityId === city.id)) {
+					this.view.showCityError('done');
+					return;
+				}
+
+				const addedCity = await this.model.addCity(city.id);
+
+				const newCityAdded = new CustomEvent('newCityAdded', {detail: addedCity});
+				document.body.dispatchEvent(newCityAdded);
+
 			} catch (err) {
 				console.error(err);
 			}

@@ -1,7 +1,4 @@
 export default class RateView {
-	constructor() {
-
-	}
 
 	getMainEl() {
 		return document.querySelector('#exchange');

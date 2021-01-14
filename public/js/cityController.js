@@ -39,10 +39,10 @@ export default class CityController {
 	}
 
 	async deleteCity(item) {
-		this.view.deleteCity(item);
 		try {
 			const attr = item.getAttribute('data-id');
 			await this.model.deleteCity(attr);
+			this.view.deleteCity(item);
 
 		} catch (err) {
 			console.error(err);
@@ -78,31 +78,31 @@ export default class CityController {
 
 				if (city === undefined) {
 					this.view.showCityError('spelling');
-
-				} else {
-					this.view.clearInput();
-
-					let userCities = await this.model.getUserCityList();
-
-					if (userCities.find(item => item.cityId === city.id)) {
-						this.view.showCityError('done');
-					} else {
-						await this.model.editCity(itemId, city.id);
-
-						this.model.getCityWeather(city.id)
-						.then(weather => {
-							this.view.finishEditCity(weather);
-							this.view.enableBtn();
-							this.addBodyEventEnableSearch();
-						})
-						.catch((err) => {
-							this.view.cityErrorRender();
-							console.error(err);
-						});
-
-					}
-
+					return;
 				}
+
+				this.view.clearInput();
+
+				let userCities = await this.model.getUserCityList();
+
+				if (userCities.find(item => item.cityId === city.id)) {
+					this.view.showCityError('done');
+					return;
+				}
+
+				await this.model.editCity(itemId, city.id);
+
+				this.model.getCityWeather(city.id)
+				.then(weather => {
+					this.view.finishEditCity(weather);
+					this.view.enableBtn();
+					this.addBodyEventEnableSearch();
+				})
+				.catch((err) => {
+					this.view.cityErrorRender();
+					console.error(err);
+				});
+
 			} catch (err) {
 				console.error(err);
 			}
