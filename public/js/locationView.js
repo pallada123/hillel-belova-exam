@@ -1,3 +1,5 @@
+import {msgErrorRefuse, msgErrorWeatherNotAvailable, iconUrl, iconExt} from './data.js';
+
 export default class LocationView {
 	constructor() {
 
@@ -17,7 +19,7 @@ export default class LocationView {
 		const city = document.createElement('div');
 
 		img.setAttribute('alt', '');
-		img.setAttribute('src', 'http://openweathermap.org/img/wn/' + weather.icon + '.png');
+		img.setAttribute('src', iconUrl + weather.icon + iconExt);
 
 		head.classList.add('loc-w-head');
 		data.classList.add('loc-w-data');
@@ -37,9 +39,9 @@ export default class LocationView {
 	locationErrorRender(msg) {
 		const mainLocation = this.getMainEl();
 		if (msg === 'refuse') {
-			mainLocation.innerHTML = '<p>You\'ve refused to&nbsp;receive the&nbsp;weather in&nbsp;your city</p>';
+			mainLocation.innerHTML = `<p>${msgErrorRefuse}</p>`;
 		} else {
-			mainLocation.innerHTML = '<p>Unfortunately, the&nbsp;weather in&nbsp;your city isn\'t&nbsp;available now.</p>';
+			mainLocation.innerHTML = `<p>${msgErrorWeatherNotAvailable}</p>`;
 		}
 	}
 

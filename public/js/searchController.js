@@ -35,8 +35,6 @@ export default class SearchController {
 					} else {
 						const addedCity = await this.model.addCity(city.id);
 
-						//console.log(addedCity);
-
 						const newCityAdded = new CustomEvent('newCityAdded', {detail: addedCity});
 						document.body.dispatchEvent(newCityAdded);
 					}

@@ -1,3 +1,11 @@
+export const msgErrorRefuse = 'You\'ve refused to&nbsp;receive the&nbsp;weather in&nbsp;your city.';
+export const msgErrorSpelling = 'Sorry, but we don\'t know this city. Please check the&nbsp;spelling.';
+export const msgErrorCityExists = 'This city already exists in&nbsp;your list.';
+export const msgErrorWeatherNotAvailable = 'Unfortunately, the&nbsp;weather in&nbsp;your city isn\'t&nbsp;available now.';
+export const msgErrorCityListWeatherNotAvailable = 'Unfortunately, the&nbsp;weather in&nbsp;this&nbsp;city isn\'t&nbsp;available now.';
+export const iconUrl = 'http://openweathermap.org/img/wn/';
+export const iconExt = '.png';
+
 export default class Data {
 
 	static getRate() {
@@ -46,7 +54,8 @@ export default class Data {
 
 	static async getCity(value) {
 		const cities = await fetch('/cities').then(res => res.json());
-		return cities.find(item => item.name === value);	}
+		return cities.find(item => item.name === value);
+	}
 
 	static async getUserCityList() {
 		return await fetch('/mycities').then(res => res.json());
@@ -96,9 +105,7 @@ export default class Data {
 			body: JSON.stringify(city)
 		});
 
-		if (response.ok) {
-			return await response.json();
-		} else {
+		if (!response.ok) {
 			throw new Error(response.status);
 		}
 	}

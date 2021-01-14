@@ -53,6 +53,7 @@ export default class CityController {
 		this.view.startEditCity(id);
 		this.view.disableBtn();
 		this.addSaveHandle();
+		this.addCityInputHandle();
 		this.addCancelHandle();
 		this.addBodyEventDisableSearch();
 	}
@@ -63,11 +64,50 @@ export default class CityController {
 		this.addBodyEventEnableSearch();
 	}
 
-	finishEditCity(event) {
-		this.model.updateCity(this.view.getValue(), this.view.getIndex(event.target));
-		this.view.finishEditCity();
-		this.view.enableBtn();
-		this.addBodyEventEnableSearch();
+	async finishEditCity(event) {
+
+		const itemId = this.view.getIndex(event.target);
+		const cityName = this.view.getValue(itemId);
+		this.view.removeCityError(itemId);
+
+		if (cityName.length) {
+
+			try {
+
+				const city = await this.model.getCity(cityName);
+
+				if (city === undefined) {
+					this.view.showCityError('spelling');
+
+				} else {
+					this.view.clearInput();
+
+					let userCities = await this.model.getUserCityList();
+
+					if (userCities.find(item => item.cityId === city.id)) {
+						this.view.showCityError('done');
+					} else {
+						await this.model.editCity(itemId, city.id);
+
+						this.model.getCityWeather(city.id)
+						.then(weather => {
+							this.view.finishEditCity(weather);
+							this.view.enableBtn();
+							this.addBodyEventEnableSearch();
+						})
+						.catch((err) => {
+							this.view.cityErrorRender();
+							console.error(err);
+						});
+
+					}
+
+				}
+			} catch (err) {
+				console.error(err);
+			}
+
+		}
 	}
 
 	addEditDeleteHandles(id) {
@@ -85,6 +125,14 @@ export default class CityController {
 	addSaveHandle() {
 		const btnSave = document.querySelector('.btnSave');
 		btnSave.addEventListener('click', this.finishEditCity.bind(this));
+	}
+
+	addCityInputHandle() {
+		this.view.input.addEventListener('keydown', e => {
+			if (e.keyCode === 13) {
+				this.finishEditCity(e);
+			}
+		});
 	}
 
 	addCancelHandle() {

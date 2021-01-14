@@ -1,3 +1,5 @@
+import {msgErrorCityListWeatherNotAvailable, msgErrorSpelling, msgErrorCityExists, iconUrl, iconExt} from './data.js';
+
 export default class CityView {
 	constructor() {
 
@@ -22,7 +24,7 @@ export default class CityView {
 
 		item.setAttribute('data-id', id);
 		img.setAttribute('alt', '');
-		img.setAttribute('src', 'http://openweathermap.org/img/wn/' + weather.icon + '.png');
+		img.setAttribute('src', iconUrl + weather.icon + iconExt);
 
 		item.classList.add('city-w-item');
 		head.classList.add('city-w-head');
@@ -55,17 +57,17 @@ export default class CityView {
 		const search = this.getPrevEl();
 		const item = document.createElement('div');
 		item.classList.add('city-w-item');
-		item.innerHTML = '<p>The&nbsp;city has&nbsp;been added to&nbsp;your list.<br />Unfortunately, the&nbsp;weather in&nbsp;this&nbsp;city isn\'t&nbsp;available now.</p>';
+		item.innerHTML = `<p>${msgErrorCityListWeatherNotAvailable}</p>`;
 		search.after(item);
 	}
 
 
 	getIndex(item) {
-		//return item.closest('li').getAttribute('data-index');
+		return item.closest('div.city-w-item').getAttribute('data-id');
 	}
 
 	getValue() {
-		//return document.querySelector('.editedText input').value;
+		return document.querySelector('.city-w-head input').value;
 	}
 
 	deleteCity(item) {
@@ -130,9 +132,49 @@ export default class CityView {
 		this.head.innerText = this.oldText;
 	}
 
-	finishEditCity() {
-		// const value = this.getValue();
-		// this.clearEdit().innerText = value;
+	finishEditCity(weather) {
+		this.clearEdit();
+
+		const parent = this.item;
+		const img = parent.querySelector('img');
+		const temp = parent.querySelector('.city-w-temp');
+		const desc = parent.querySelector('.city-w-desc');
+
+		img.removeAttribute('src');
+		img.setAttribute('src', iconUrl + weather.icon + iconExt);
+
+		this.head.innerText = weather.name + ', ' + weather.country;
+		temp.innerHTML = weather.temp + '&deg;C';
+		desc.innerHTML = `
+			${weather.description}<br />
+			feels like: ${weather.feels_like}&deg;C<br />
+			wind: ${weather.wind} mps<br />
+			humidity: ${weather.humidity}%
+		`;
+	}
+
+	showCityError(msg) {
+		const p = document.createElement('p');
+		if (msg === 'spelling') {
+			p.innerHTML = msgErrorSpelling;
+		} else if (msg === 'done') {
+			p.innerHTML = msgErrorCityExists;
+		}
+
+		this.input.after(p);
+		this.clearInput();
+	}
+
+	clearInput() {
+		this.input.value = '';
+	}
+
+	removeCityError() {
+		const spellingError = document.querySelector('.city-w-head p');
+
+		if(spellingError) {
+			spellingError.remove();
+		}
 	}
 
 }

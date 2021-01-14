@@ -1,3 +1,5 @@
+import {msgErrorSpelling, msgErrorCityExists, iconUrl, iconExt} from './data.js';
+
 export default class SearchView {
 	constructor() {
 
@@ -25,9 +27,9 @@ export default class SearchView {
 	showCityError(msg) {
 		const p = document.createElement('p');
 		if (msg === 'spelling') {
-			p.innerHTML = 'Sorry, but we don\'t know this city. Please check the&nbsp;spelling.';
+			p.innerHTML = msgErrorSpelling;
 		} else if (msg === 'done') {
-			p.innerHTML = 'This city already exists on&nbsp;your list';
+			p.innerHTML = msgErrorCityExists;
 		}
 
 		this.search.appendChild(p);

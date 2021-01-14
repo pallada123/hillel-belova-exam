@@ -53,9 +53,9 @@ input[type="text"] {
     font-size: 16px;
     padding: 0px 15px;
     display: inline-block;
-    margin-right: 20px;
     min-width: 1px;
 }
+input[disabled="disabled"] {opacity: .5;}
 
 #wrapper {
     height: auto;
@@ -138,6 +138,7 @@ h1 {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+    margin-right: 20px;
 }
 #city-search p {
     margin: 10px 10px 0 10px;
@@ -166,7 +167,14 @@ h1 {
 .city-w-btns {padding: 10px 10px 0 10px; width: 100px;}
 .city-w-btns button, .city-w-btns button:hover {margin: 0 0 10px 0;}
 
-#weather-favorite input[type="text"] {width: 100%;}
+.city-w-item input[type="text"] {width: 100%; margin: 0 0 10px 0;}
+
+.city-w-head p {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ec6e4c;
+    font-size: 16px;
+}
     /* /city item */
 
 
@@ -234,6 +242,7 @@ h1 {
         padding-right: 100px;
         position: relative;
     }
+    .city-w-item {padding-bottom: 30px;}
     .city-w-btns {
         position: absolute;
         top: 0;

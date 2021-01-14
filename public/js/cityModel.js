@@ -1,4 +1,4 @@
-import Data from './data.js'
+import Data from './data.js';
 
 export default class CityModel {
 	constructor() {
@@ -21,8 +21,12 @@ export default class CityModel {
 		return await Data.deleteCity(id);
 	}
 
-	updateCity() {
+	async getCity(value) {
+		return await Data.getCity(value);
+	}
 
+	async editCity(itemId, newCityId) {
+		return await Data.editCity(itemId, newCityId);
 	}
 
 }
