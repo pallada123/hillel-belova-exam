@@ -3,8 +3,11 @@ export const msgErrorSpelling = 'Sorry, but we don\'t know this city. Please che
 export const msgErrorCityExists = 'This city already exists in&nbsp;your list.';
 export const msgErrorWeatherNotAvailable = 'Unfortunately, the&nbsp;weather in&nbsp;your city isn\'t&nbsp;available now.';
 export const msgErrorCityListWeatherNotAvailable = 'Unfortunately, the&nbsp;weather in&nbsp;this&nbsp;city isn\'t&nbsp;available now.';
+
 export const iconUrl = 'http://openweathermap.org/img/wn/';
 export const iconExt = '.png';
+export const tempSymbol = '&deg;C';
+export const windSymbol = 'mps';
 
 export default class Data {
 

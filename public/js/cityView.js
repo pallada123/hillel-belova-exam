@@ -1,4 +1,4 @@
-import {msgErrorCityListWeatherNotAvailable, msgErrorSpelling, msgErrorCityExists, iconUrl, iconExt} from './data.js';
+import {msgErrorCityListWeatherNotAvailable, msgErrorSpelling, msgErrorCityExists, iconUrl, iconExt, tempSymbol, windSymbol} from './data.js';
 
 export default class CityView {
 	constructor() {
@@ -36,17 +36,17 @@ export default class CityView {
 		btnEdit.classList.add('btnEdit');
 
 		head.innerText = weather.name + ', ' + weather.country;
-		temp.innerHTML = weather.temp + '&deg;C';
+		temp.innerHTML = weather.temp + tempSymbol;
 		desc.innerHTML = `
 			${weather.description}<br />
-			feels like: ${weather.feels_like}&deg;C<br />
-			wind: ${weather.wind} mps<br />
+			feels like: ${weather.feels_like}${tempSymbol}<br />
+			wind: ${weather.wind} ${windSymbol}<br />
 			humidity: ${weather.humidity}%
 		`;
 		btnDelete.innerText = 'Delete';
 		btnEdit.innerText = 'Edit';
 
-		btns.append(btnDelete, btnEdit);
+		btns.append(btnEdit, btnDelete);
 		container.append(img, temp, desc, btns);
 		item.append(head, container);
 
@@ -110,9 +110,9 @@ export default class CityView {
 		this.input.setAttribute('type', 'text');
 
 		this.btns = document.querySelector('div[data-id=\"' + id + '\"] .city-w-btns');
-		this.btnDelete = document.querySelector('div[data-id=\"' + id + '\"] .btnDelete');
+		this.btnEdit = document.querySelector('div[data-id=\"' + id + '\"] .btnEdit');
 
-		this.btns.insertBefore(this.btnEsc, this.btnDelete);
+		this.btns.insertBefore(this.btnEsc, this.btnEdit);
 		this.btns.insertBefore(this.btnSave, this.btnEsc);
 		this.head.innerText = '';
 		this.head.append(this.input);
@@ -144,11 +144,11 @@ export default class CityView {
 		img.setAttribute('src', iconUrl + weather.icon + iconExt);
 
 		this.head.innerText = weather.name + ', ' + weather.country;
-		temp.innerHTML = weather.temp + '&deg;C';
+		temp.innerHTML = weather.temp + tempSymbol;
 		desc.innerHTML = `
 			${weather.description}<br />
-			feels like: ${weather.feels_like}&deg;C<br />
-			wind: ${weather.wind} mps<br />
+			feels like: ${weather.feels_like}${tempSymbol}<br />
+			wind: ${weather.wind} ${windSymbol}<br />
 			humidity: ${weather.humidity}%
 		`;
 	}

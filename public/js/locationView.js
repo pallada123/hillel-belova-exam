@@ -1,4 +1,4 @@
-import {msgErrorRefuse, msgErrorWeatherNotAvailable, iconUrl, iconExt} from './data.js';
+import {msgErrorRefuse, msgErrorWeatherNotAvailable, iconUrl, iconExt, tempSymbol} from './data.js';
 
 export default class LocationView {
 	constructor() {
@@ -28,7 +28,7 @@ export default class LocationView {
 		city.classList.add('loc-w-city');
 
 		head.innerText = 'Your City';
-		span.innerHTML = weather.temp + '&deg;C';
+		span.innerHTML = weather.temp + tempSymbol;
 		desc.innerText = weather.description;
 		city.innerText = weather.name + ', ' + weather.country;
 

@@ -1,10 +1,9 @@
 export default class MainController {
-	constructor(searchController, locationController, cityController, rateController, model, view) {
+	constructor(searchController, locationController, cityController, rateController, view) {
 		this.searchController = searchController;
 		this.locationController = locationController;
 		this.cityController = cityController;
 		this.rateController = rateController;
-		this.model = model;
 		this.view = view;
 
 		this.init();

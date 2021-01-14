@@ -1,5 +1,4 @@
 import MainController from './mainController.js';
-import MainModel from './mainModel.js';
 import MainView from './mainView.js';
 
 import SearchController from './searchController.js';
@@ -39,8 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const rateController = new RateController(rateModel, rateView);
 
 		const mainView = new MainView;
-		const mainModel = new MainModel;
-		const mainController = new MainController(searchController, locationController, cityController, rateController, mainModel, mainView);
+		const mainController = new MainController(searchController, locationController, cityController, rateController, mainView);
 
 	})();
 
