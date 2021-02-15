@@ -23,6 +23,10 @@ export default class RateModel {
 	fixNumFormat(num) {
 		const numArr = String(Math.round(Number(num) * 100) / 100).split('.');
 
+		if (numArr.length === 1) {
+			return numArr + '.00';
+		}
+
 		if (numArr[1].length === 2) {
 			return numArr.join('.');
 		}
